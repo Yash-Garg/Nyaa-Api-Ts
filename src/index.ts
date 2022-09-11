@@ -10,7 +10,7 @@ API.prepare = CORS.preflight({
   methods: ["GET"],
 });
 
-API.add("GET", "/", Routes.PingApi);
+API.add("GET", "/", Routes.Ping);
 API.add("GET", "/id/:id", Routes.GetInfoFromID);
 API.add("GET", "/user/:username", Routes.GetUserUploads);
 API.add("GET", "/:category/:sub_category?", Routes.GetCategoryTorrents);

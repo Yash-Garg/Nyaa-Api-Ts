@@ -1,6 +1,6 @@
 import { Handler } from "worktop";
 
-export const PingApi: Handler = function (_, res) {
+export const Ping: Handler = function (_, res) {
   res.send(200, "Nyaa API v2 // Alive");
 };
 
