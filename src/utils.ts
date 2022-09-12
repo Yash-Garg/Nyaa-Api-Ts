@@ -20,7 +20,7 @@ export async function checkNyaaUrl(): Promise<string> {
 }
 
 export function getCategoryID(c: string, s: string): string {
-  if (s.length === 0) {
+  if (s === undefined) {
     return Constants.NyaaEndpoints[c]["all"];
   } else if (c == "all") {
     return "";

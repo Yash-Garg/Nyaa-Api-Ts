@@ -29,5 +29,19 @@ export class Handlers {
     await Scrapers.scrapeNyaa(res, searchUrl);
   };
 
-  static GetCategoryTorrents: Handler = function (req, res) {};
+  static GetCategoryTorrents: Handler = async function (req, res) {
+    const cat = req.params.category;
+    const subCat = req.params.subcategory;
+
+    const category = Utils.getCategoryID(cat, subCat);
+    const queryParams = Utils.getSearchParameters(req);
+
+    const searchUrl = `${
+      Constants.NyaaAltUrl
+    }?q=${queryParams.query.trim()}&c=${category}&p=${queryParams.page}&s=${
+      queryParams.sort
+    }&o=${queryParams.order}&f=${queryParams.filter}`;
+
+    await Scrapers.scrapeNyaa(res, searchUrl);
+  };
 }
