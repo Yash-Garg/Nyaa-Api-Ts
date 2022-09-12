@@ -30,11 +30,11 @@ export function getCategoryID(c: string, s: string): string {
 }
 
 export function getSearchParameters(req: ServerRequest): QueryParams {
-  const q = req.query.get("q").replaceAll(" ", "+");
-  const p = Number(req.query.get("p"));
-  const o = req.query.get("o");
-  const f = Number(req.query.get("f"));
-  let s = req.query.get("s");
+  const q: string | null = (req.query.get("q") ?? "").replaceAll(" ", "+");
+  const p: number | null = Number(req.query.get("p"));
+  const o: string | null = req.query.get("o");
+  const f: number | null = Number(req.query.get("f"));
+  let s: string | null = req.query.get("s");
 
   if (s == "date") {
     s = "id";

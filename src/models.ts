@@ -33,9 +33,9 @@ export interface Comments {
 }
 
 export interface QueryParams {
-  query: string;
-  sort: string;
-  order: string;
-  page: number;
-  filter: number;
+  query?: string;
+  sort?: string;
+  order?: string;
+  page?: number;
+  filter?: number;
 }

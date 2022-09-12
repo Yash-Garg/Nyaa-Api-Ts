@@ -1,7 +1,7 @@
-import { checkNyaaUrl } from "./utils";
 import { Handler } from "worktop";
 import { fileInfoScraper } from "./scrapers";
 import { Constants } from "./constants";
+import * as Utils from "./utils";
 
 export class Handlers {
   static Ping: Handler = function (_, res) {
@@ -16,7 +16,10 @@ export class Handlers {
     await fileInfoScraper(res, searchUrl);
   };
 
-  static GetUserUploads: Handler = function (req, res) {};
+  static GetUserUploads: Handler = function (req, res) {
+    const username = req.params.username;
+    const queryParams = Utils.getSearchParameters(req);
+  };
 
   static GetCategoryTorrents: Handler = function (req, res) {};
 }
