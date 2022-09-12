@@ -91,3 +91,5 @@ export async function fileInfoScraper(res: ServerResponse, url: string) {
 
   res.send(200, file);
 }
+
+export async function scrapeNyaa(res: ServerResponse, url: string) {}

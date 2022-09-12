@@ -1,5 +1,5 @@
 import { Handler } from "worktop";
-import { fileInfoScraper } from "./scrapers";
+import * as Scrapers from "./scrapers";
 import { Constants } from "./constants";
 import * as Utils from "./utils";
 
@@ -13,12 +13,20 @@ export class Handlers {
     // const baseUrl = await checkNyaaUrl();
     const searchUrl = Constants.NyaaAltUrl + "/view/" + id;
 
-    await fileInfoScraper(res, searchUrl);
+    await Scrapers.fileInfoScraper(res, searchUrl);
   };
 
-  static GetUserUploads: Handler = function (req, res) {
+  static GetUserUploads: Handler = async function (req, res) {
     const username = req.params.username;
     const queryParams = Utils.getSearchParameters(req);
+
+    const searchUrl = `${
+      Constants.NyaaAltUrl
+    }/user/${username}?q=${queryParams.query.trim()}&p=${queryParams.page}&s=${
+      queryParams.sort
+    }&o=${queryParams.order}&f=${queryParams.filter}`;
+
+    await Scrapers.scrapeNyaa(res, searchUrl);
   };
 
   static GetCategoryTorrents: Handler = function (req, res) {};
