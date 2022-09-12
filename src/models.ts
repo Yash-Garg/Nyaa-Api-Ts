@@ -31,3 +31,11 @@ export interface Comments {
   count: number;
   comments: Comment[];
 }
+
+export interface QueryParams {
+  query: string;
+  sort: string;
+  order: string;
+  page: number;
+  filter: number;
+}

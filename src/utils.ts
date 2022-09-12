@@ -1,4 +1,6 @@
+import { ServerRequest } from "worktop/request";
 import { Constants } from "./constants";
+import { QueryParams } from "./models";
 
 export async function checkNyaaUrl(): Promise<string> {
   try {
@@ -15,4 +17,28 @@ export async function checkNyaaUrl(): Promise<string> {
     console.log("NyaaBaseUrl Error:", error ?? "Something went wrong.");
     return Constants.NyaaAltUrl;
   }
+}
+
+export function getCategoryID(c: string, s: string): string {
+  if (s.length === 0) {
+    return Constants.NyaaEndpoints[c]["all"];
+  } else if (c == "all") {
+    return "";
+  } else {
+    return Constants.NyaaEndpoints[c][s];
+  }
+}
+
+export function getSearchParameters(req: ServerRequest): QueryParams {
+  const q = req.query.get("q").replaceAll(" ", "+");
+  const p = Number(req.query.get("p"));
+  const o = req.query.get("o");
+  const f = Number(req.query.get("f"));
+  let s = req.query.get("s");
+
+  if (s == "date") {
+    s = "id";
+  }
+
+  return <QueryParams>{ query: q, page: p, order: o, sort: s, filter: f };
 }
