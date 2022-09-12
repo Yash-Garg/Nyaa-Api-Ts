@@ -55,15 +55,20 @@ export async function fileInfoScraper(res: ServerResponse, url: string) {
   let comments: Models.Comment[] = [];
   if (commentCount > 0) {
     container
-      .find("div.container div#comments div.comment-panel")
+      .find("div#comments div.comment-panel div.panel-body")
       .each((_, selection) => {
-        // const comment: Models.Comment = {
-        //   name: "",
-        //   content: "",
-        //   image: "",
-        //   timestamp: "",
-        // };
-        // comments.push(comment);
+        const element = $(selection);
+
+        const comment: Models.Comment = {
+          name: element.find("a").first().text().trim(),
+          content: element.find("div.comment-body div.comment-content").text(),
+          image:
+            element.find("img.avatar").attr("src") ??
+            Constants.DefaultProfilePic,
+          timestamp: element.find("a").children().first().text(),
+        };
+
+        comments.push(comment);
       });
   }
 
