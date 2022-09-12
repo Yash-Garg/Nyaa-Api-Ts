@@ -1,8 +1,10 @@
 # Nyaa-Api-Ts
 
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Yash-Garg/Nyaa-Api-Ts)
+
 This API is an **Unofficial Nyaa API** rewritten in Typescript.
 
-Older Go Api - [Yash-Garg/Nyaa-Api-Go](https://github.com/Yash-Garg/Nyaa-Api-Go)
+Previous Go API - [Yash-Garg/Nyaa-Api-Go](https://github.com/Yash-Garg/Nyaa-Api-Go)
 
 ## Usage
 
