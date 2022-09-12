@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "outDir": "build",
         "rootDir": "src",
         "lib": [
             "ES2021.String"
