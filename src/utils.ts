@@ -22,8 +22,6 @@ export async function checkNyaaUrl(): Promise<string> {
 export function getCategoryID(c: string, s: string): string {
   if (s === undefined) {
     return Constants.NyaaEndpoints[c]["all"];
-  } else if (c == "all") {
-    return "";
   } else {
     return Constants.NyaaEndpoints[c][s];
   }

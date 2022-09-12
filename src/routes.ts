@@ -31,10 +31,9 @@ export class Handlers {
 
   static GetCategoryTorrents: Handler = async function (req, res) {
     const cat = req.params.category;
-    // const subCat = req.params.subcategory;
+    const subCat = req.params.subcategory;
 
-    // TODO: Fix subcategory conditions
-    const category = Utils.getCategoryID(cat, undefined);
+    const category = Utils.getCategoryID(cat, subCat);
     const queryParams = Utils.getSearchParameters(req);
 
     const searchUrl = `${

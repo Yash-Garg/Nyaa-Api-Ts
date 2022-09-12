@@ -5,6 +5,9 @@ export class Constants {
     "https://raw.githubusercontent.com/Yash-Garg/Nyaa-Api-Go/dev/static/default.png";
 
   static NyaaEndpoints: Object = {
+    all: {
+      all: "0_0",
+    },
     anime: {
       all: "1_0",
       amv: "1_1",
