@@ -1,6 +1,4 @@
 import { Constants } from "./constants";
-import * as cheerio from "cheerio";
-import type { ServerResponse } from "worktop/response";
 
 export async function checkNyaaUrl(): Promise<string> {
   try {
@@ -17,10 +15,4 @@ export async function checkNyaaUrl(): Promise<string> {
     console.log("NyaaBaseUrl Error:", error ?? "Something went wrong.");
     return Constants.NyaaAltUrl;
   }
-}
-
-export async function fileInfoScraper(res: ServerResponse, url: string) {
-  const responseBody = await fetch(url).then((res) => res.text());
-
-  let $ = cheerio.load(responseBody);
 }

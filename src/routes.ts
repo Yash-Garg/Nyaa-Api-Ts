@@ -1,6 +1,7 @@
 import { checkNyaaUrl } from "./utils";
 import { Handler } from "worktop";
-import { fileInfoScraper } from "./utils";
+import { fileInfoScraper } from "./scrapers";
+import { Constants } from "./constants";
 
 export class Handlers {
   static Ping: Handler = function (_, res) {
@@ -9,8 +10,8 @@ export class Handlers {
 
   static GetInfoFromID: Handler = async function (req, res) {
     const { id } = req.params;
-    const baseUrl = await checkNyaaUrl();
-    const searchUrl = baseUrl + "/view/" + id;
+    // const baseUrl = await checkNyaaUrl();
+    const searchUrl = Constants.NyaaAltUrl + "/view/" + id;
 
     await fileInfoScraper(res, searchUrl);
   };
