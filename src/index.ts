@@ -11,7 +11,7 @@ API.prepare = CORS.preflight({
 });
 
 API.add("GET", "/", Handlers.Ping);
-API.add("GET", "/:category/:sub_category?", Handlers.GetCategoryTorrents);
+API.add("GET", "/:category", Handlers.GetCategoryTorrents);
 API.add("GET", "/id/:id", Handlers.GetInfoFromID);
 API.add("GET", "/user/:username", Handlers.GetUserUploads);
 
