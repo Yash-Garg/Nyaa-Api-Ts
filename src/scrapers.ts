@@ -92,4 +92,34 @@ export async function fileInfoScraper(res: ServerResponse, url: string) {
   res.send(200, file);
 }
 
-export async function scrapeNyaa(res: ServerResponse, url: string) {}
+export async function scrapeNyaa(res: ServerResponse, url: string) {
+  const responseBody = await fetch(url).then((res) => res.text());
+
+  const $ = cheerio.load(responseBody);
+  const table = $("tbody");
+
+  let torrents: Models.Torrent[] = [];
+  table.find("tr").each((_, selection) => {
+    const row = $(selection);
+    const torrentPath = row.find("td:nth-child(2) a").last().attr("href");
+    const filePath = row.find("td:nth-child(3) a:nth-child(1)").attr("href");
+
+    const torrent: Models.Torrent = {
+      id: Number(torrentPath.split("/")[2]),
+      title: row.find("td:nth-child(2) a").last().text(),
+      link: Constants.NyaaBaseUrl + torrentPath,
+      file: Constants.NyaaBaseUrl + filePath,
+      category: row.find("td:nth-child(1) a").attr("title"),
+      size: row.find("td:nth-child(4)").text(),
+      uploaded: row.find("td:nth-child(5)").text(),
+      seeders: Number(row.find("td:nth-child(6)").text()),
+      leechers: Number(row.find("td:nth-child(7)").text()),
+      completed: Number(row.find("td:nth-child(8)").text()),
+      magnet: row.find("td:nth-child(3) a:nth-child(2)").attr("href"),
+    };
+
+    torrents.push(torrent);
+  });
+
+  res.send(200, torrents);
+}

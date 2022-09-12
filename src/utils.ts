@@ -32,9 +32,9 @@ export function getCategoryID(c: string, s: string): string {
 export function getSearchParameters(req: ServerRequest): QueryParams {
   const q: string | null = (req.query.get("q") ?? "").replaceAll(" ", "+");
   const p: number | null = Number(req.query.get("p"));
-  const o: string | null = req.query.get("o");
+  const o: string | null = req.query.get("o") ?? "";
   const f: number | null = Number(req.query.get("f"));
-  let s: string | null = req.query.get("s");
+  let s: string | null = req.query.get("s") ?? "";
 
   if (s == "date") {
     s = "id";
