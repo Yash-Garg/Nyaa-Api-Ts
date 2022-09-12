@@ -1,19 +1,18 @@
-import axios from "axios";
-import * as Constants from "./constants";
+import { Constants } from "./constants";
 
 export async function checkNyaaUrl(): Promise<string> {
   try {
-    const { status } = await axios.get(Constants.NyaaBaseUrl);
+    const resp = await fetch(Constants.NyaaBaseUrl);
 
-    console.log("NyaaBaseUrl Status: ", status);
+    console.log("NyaaBaseUrl Status:", resp.statusText);
 
-    if (status === 200) {
+    if (resp.status === 200) {
       return Constants.NyaaBaseUrl;
     } else {
       return Constants.NyaaAltUrl;
     }
   } catch (error) {
-    console.log("NyaaBaseUrl Error:", error.message ?? "Something went wrong.");
+    console.log("NyaaBaseUrl Error:", error ?? "Something went wrong.");
     return Constants.NyaaAltUrl;
   }
 }

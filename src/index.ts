@@ -1,6 +1,6 @@
 import { listen, Router } from "worktop";
 import * as CORS from "worktop/cors";
-import * as Routes from "./routes";
+import { Handlers } from "./routes";
 
 const API = new Router();
 
@@ -10,9 +10,9 @@ API.prepare = CORS.preflight({
   methods: ["GET"],
 });
 
-API.add("GET", "/", Routes.Ping);
-API.add("GET", "/id/:id", Routes.GetInfoFromID);
-API.add("GET", "/user/:username", Routes.GetUserUploads);
-API.add("GET", "/:category/:sub_category?", Routes.GetCategoryTorrents);
+API.add("GET", "/", Handlers.Ping);
+API.add("GET", "/id/:id", Handlers.GetInfoFromID);
+API.add("GET", "/user/:username", Handlers.GetUserUploads);
+API.add("GET", "/:category/:sub_category?", Handlers.GetCategoryTorrents);
 
 listen(API.run);
