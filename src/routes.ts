@@ -12,7 +12,7 @@ export class Handlers {
 
   static GetInfoFromID: Handler = async function (req, res) {
     try {
-      const { id } = req.params;
+      const id = req.params.id;
       const searchUrl = baseUrl + "/view/" + id;
 
       await Scrapers.fileInfoScraper(res, searchUrl);
