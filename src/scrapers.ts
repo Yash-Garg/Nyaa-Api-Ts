@@ -11,14 +11,15 @@ export async function fileInfoScraper(res: ServerResponse, url: string) {
 
     const $ = cheerio.load(responseBody);
     const container = $("body div.container").last();
+    const fileId = Number(url.split("/")[4])
 
     const torrentData: Models.Torrent = {
       title: container.find("h3.panel-title").first().text().trim(),
       file:
         Constants.NyaaBaseUrl +
         container.find("div.panel-footer a").attr("href"),
-      link: url,
-      id: Number(url.split("/")[4]),
+      link: `${Constants.NyaaBaseUrl}/view/${fileId}`,
+      id: fileId,
       magnet: container.find("div.panel-footer a:nth-child(2)").attr("href")!,
       size: container
         .find("div.panel-body div.row:nth-child(4) .col-md-5:nth-child(2)")
