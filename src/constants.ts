@@ -1,6 +1,6 @@
 export class Constants {
   static NyaaBaseUrl: string = "https://nyaa.si";
-  static NyaaAltUrl: string = "https://nyaa.smartass08.dev";
+  static NyaaAltUrl: string = "https://nyaa.smartass08.xyz";
   static DefaultProfilePic: string =
     "https://raw.githubusercontent.com/Yash-Garg/Nyaa-Api-Go/dev/static/default.png";
 
