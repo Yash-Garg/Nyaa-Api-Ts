@@ -1,4 +1,4 @@
-name = "nyaa-api-ts"
+name = "nyaa"
 compatibility_date = "2022-09-11"
 workers_dev = true
 main = "src/index.ts"
