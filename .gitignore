@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Devenv
+.devenv*
+devenv.local.nix
+.direnv
