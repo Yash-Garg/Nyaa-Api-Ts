@@ -1,4 +1,4 @@
-name: Publish on workers.dev
+name: Deploy on workers.dev
 
 on:
   push:
@@ -22,4 +22,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: publish
+          command: deploy
